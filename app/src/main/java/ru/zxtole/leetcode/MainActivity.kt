@@ -17,7 +17,17 @@ import androidx.compose.ui.unit.dp
 import ru.zxtole.leetcode.solutions.RomainInteger
 import ru.zxtole.leetcode.ui.theme.LeetcodeTheme
 
-private const val romainRepresentation: String = "MCMXCIV"// 1994
+private const val romainRepresentation: String = "MMCDXXV"// 1996
+//private const val romainRepresentation: String = "MCMXCVI"// 1996
+//private const val romainRepresentation: String = "MMMCDXC"// 3490
+//private const val romainRepresentation: String = "MMMXLV"// 3045
+//private const val romainRepresentation: String = "MMCDXXV"// 2425
+//private const val romainRepresentation: String = "MCDLXXVI"// 1476
+//private const val romainRepresentation: String = "MMCCCXCIX"// 2399
+//private const val romainRepresentation: String = "MCDLXXVI"// 1476
+//private const val romainRepresentation: String = "MMCCCXCIX"// 2399
+//private const val romainRepresentation: String = "MCDLXXVI"// 1676
+//private const val romainRepresentation: String = "MCMXCIV"// 1994
 //private const val romainRepresentation: String = "LVIII"//58
 //private const val romainRepresentation: String = "MCMXCVI"//1996
 //private const val romainRepresentation: String = "DCXXI" //621
