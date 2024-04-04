@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.zxtole.leetcode.solutions.LongestCommonPrefix
 import ru.zxtole.leetcode.solutions.RomainInteger
 import ru.zxtole.leetcode.ui.theme.LeetcodeTheme
 
@@ -60,6 +61,10 @@ class MainActivity : ComponentActivity() {
                                 intRepresentation.toString(),
                                 Modifier.padding(12.dp))
                         }
+
+                        Row {
+                            LongestCommonPrefixComposable(Modifier.padding(12.dp))
+                        }
                     }
                 }
             }
@@ -76,14 +81,14 @@ fun RomainIntegerComposable(romainIntegerAsString: String, romainIntegerAsInt: S
     )
 }
 
-@Preview(showBackground = true)
 @Composable
-fun RomainIntegerComposablePreview() {
-    LeetcodeTheme {
-        RomainIntegerComposable(
-            romainIntegerAsString = romainRepresentation,
-            romainIntegerAsInt = "1994",
-            Modifier.padding(12.dp)
-        )
-    }
+fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
+    val strings = arrayOf("flower","flow","flight")
+    val longestCommonPrefix = LongestCommonPrefix()
+    val commonPrefix = "\"flower\",\"flow\",\"flight\" common prefix: \'" +
+            longestCommonPrefix.longestCommonPrefix(strings.toMutableList()) + "\'"
+    Text(
+        text = commonPrefix,
+        modifier = modifier
+    )
 }
