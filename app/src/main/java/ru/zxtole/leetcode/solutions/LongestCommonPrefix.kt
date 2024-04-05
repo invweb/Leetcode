@@ -1,28 +1,30 @@
 package ru.zxtole.leetcode.solutions
 
+import timber.log.Timber
+
 class LongestCommonPrefix {
-    //strs:["flower","flow","flight"]
+    //strings:["flower","flow","flight"]
     fun longestCommonPrefix(strings: MutableList<String>): String {
         val firstWord: String = strings[0]
-        strings.removeAt(0)
 
         val foundWordBuilder: StringBuilder = StringBuilder()
         val letterList = ArrayList<String>()
 
         for (currentLetter in firstWord) {
             for (currentWord in strings) {
-                if(currentWord.contains(currentLetter)) {
+                Timber.d("LongestCommonPrefix: $currentWord")
+                if(currentWord != firstWord && currentWord.contains(currentLetter)) {
                     if(!letterList.contains(currentLetter.toString())) {
                         letterList.add(currentLetter.toString())
                     }
                 }
+            }
+        }
 
-                if (letterList.size >= strings.size) {
-                    letterList.forEach {
-                        if(!foundWordBuilder.contains(it)) {
-                            foundWordBuilder.append(it)
-                        }
-                    }
+        if (letterList.size >= strings.size) {
+            letterList.forEach {
+                if(!foundWordBuilder.contains(it)) {
+                    foundWordBuilder.append(it)
                 }
             }
         }
