@@ -23,13 +23,17 @@ class LongestCommonPrefix {
                         }
                     }
                 } else {
-//                    foundLetterList.remove(character.toString())
-//                    countVar++
+                    foundLetterList.remove(character.toString())
+                    countVar++
                 }
             }
         }
 
-        val common = foundLetterList.toString()
+        var common = foundLetterList.toString()
+        common = common.replace("[", "")
+            .replace("]", "")
+            .replace(",", "")
+            .replace(" ", "")
         return common.ifEmpty {
             ""
         }
