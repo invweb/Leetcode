@@ -5,13 +5,13 @@ import android.annotation.SuppressLint
 class LongestCommonPrefix {
     //strings:["flower","flow","flight"]
     //strings:["cir","car"]
+    //strings:["aa","aa"]
     @SuppressLint("LogNotTimber")
     fun longestCommonPrefix(strings: Array<String>): String {
         val firstWord: String = strings[0]
         val foundLetterList = ArrayList<String>()
 
         var countVar = 0
-
         for (currentLetterIndex in firstWord.indices) {
             val character: Char = firstWord[currentLetterIndex]
 
@@ -23,8 +23,8 @@ class LongestCommonPrefix {
                         }
                     }
                 } else {
-                    foundLetterList.remove(character.toString())
-                    countVar++
+//                    foundLetterList.remove(character.toString())
+//                    countVar++
                 }
             }
         }
