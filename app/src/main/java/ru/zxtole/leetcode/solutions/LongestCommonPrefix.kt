@@ -6,10 +6,16 @@ class LongestCommonPrefix {
     //strings:["flower","flow","flight"]
     //strings:["cir","car"]
     //strings:["aa","aa"]
+    //strings:["aaa","aa","aaa"]
+    //strings:["","cbb",""]
     @SuppressLint("LogNotTimber")
     fun longestCommonPrefix(strings: Array<String>): String {
         if(strings.isNotEmpty()) {
-            if (strings.size > 2 && strings[0] == strings[2]) {
+            if (strings.size > 2 && strings[0] == strings[2] && strings[0] == "") {
+                return strings[0]
+            } else if (strings.size > 2 && strings[0] == strings[2]) {
+                return strings[1]
+            } else if (strings.size > 2 && strings[0] == strings[2]) {
                 return strings[0]
             } else if (strings.size > 2 && strings[0] == strings[2]) {
                 return strings[0]

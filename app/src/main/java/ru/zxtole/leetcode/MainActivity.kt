@@ -85,9 +85,9 @@ fun RomainIntegerComposable(romainIntegerAsString: String, romainIntegerAsInt: S
 fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
 //    val strings = arrayOf("flower","flow","flight")
 //    val strings = arrayOf("cir","car")
-    val strings = arrayOf("aa","aa")
+    val strings = arrayOf("aaa","aa","aaa")
     val longestCommonPrefix = LongestCommonPrefix()
-    val commonPrefix = "\"aa\",\"aa\", common prefix: \'" +
+    val commonPrefix = "\"aaa\",\"aa\",\"aaa\",common prefix: \'" +
 //    val commonPrefix = "\"flower\",\"flow\",\"flight\" common prefix: \'" +
 //    val commonPrefix = "\"cir\",\"car\" common prefix: \'" +
     longestCommonPrefix.longestCommonPrefix(strings) + "\'"
