@@ -1,38 +1,37 @@
 package ru.zxtole.leetcode.solutions
 
-import timber.log.Timber
+import android.annotation.SuppressLint
 
 class LongestCommonPrefix {
     //strings:["flower","flow","flight"]
-    fun longestCommonPrefix(strings: MutableList<String>): String {
+    //strings:["cir","car"]
+    @SuppressLint("LogNotTimber")
+    fun longestCommonPrefix(strings: Array<String>): String {
         val firstWord: String = strings[0]
+        val foundLetterList = ArrayList<String>()
 
-        val foundWordBuilder: StringBuilder = StringBuilder()
-        val letterList = ArrayList<String>()
+        var countVar = 0
 
-        for (currentLetter in firstWord) {
+        for (currentLetterIndex in firstWord.indices) {
+            val character: Char = firstWord[currentLetterIndex]
+
             for (currentWord in strings) {
-                Timber.d("LongestCommonPrefix: $currentWord")
-                if(currentWord != firstWord && currentWord.contains(currentLetter)) {
-                    if(!letterList.contains(currentLetter.toString())) {
-                        letterList.add(currentLetter.toString())
+                if (currentWord.contains(character)) {
+                    if (!foundLetterList.contains(character.toString())) {
+                        if (countVar == 0) {
+                            foundLetterList.add(character.toString())
+                        }
                     }
+                } else {
+                    foundLetterList.remove(character.toString())
+                    countVar++
                 }
             }
         }
 
-        if (letterList.size >= strings.size) {
-            letterList.forEach {
-                if(!foundWordBuilder.contains(it)) {
-                    foundWordBuilder.append(it)
-                }
-            }
-        }
-
-        val common = foundWordBuilder.toString()
+        val common = foundLetterList.toString()
         return common.ifEmpty {
-            "NA"
+            ""
         }
-
     }
 }
