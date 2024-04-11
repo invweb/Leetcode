@@ -3,15 +3,27 @@ package ru.zxtole.leetcode
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.zxtole.leetcode.solutions.LongestCommonPrefix
@@ -83,17 +95,23 @@ fun RomainIntegerComposable(romainIntegerAsString: String, romainIntegerAsInt: S
 
 @Composable
 fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
-//    val strings = arrayOf("flower","flow","flight")
-//    val strings = arrayOf("cir","car")
-    val strings = arrayOf("aaa","aa","aaa")
     val longestCommonPrefix = LongestCommonPrefix()
-    val commonPrefix = "\"aaa\",\"aa\",\"aaa\",common prefix: \'" +
-//    val commonPrefix = "\"flower\",\"flow\",\"flight\" common prefix: \'" +
-//    val commonPrefix = "\"cir\",\"car\" common prefix: \'" +
-    longestCommonPrefix.longestCommonPrefix(strings) + "\'"
+    val wordsToProcess = arrayOf("cir","car") //-
+//    val wordsToProcess = arrayOf("flower","flow","flight")
+//    val wordsToProcess = arrayOf("flower","flower","flower","flower")
+//    val wordsToProcess = arrayOf("aa","aa")
+//    val wordsToProcess = arrayOf("a","a","b") //-
+//    val wordsToProcess = arrayOf("c","acc","ccc") //-
+    val commonPrefix = wordsToProcess.joinToString() + " common prefix: " +
+            "\'" + longestCommonPrefix.longestCommonPrefix(wordsToProcess) + "\'"
 
-    Text(
-        text = commonPrefix,
-        modifier = modifier
-    )
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Row {
+            Text(
+                text = commonPrefix,
+                modifier = modifier
+            )
+        }
+    }
 }
