@@ -15,8 +15,8 @@ class LongestCommonPrefix {
     //strings:["a","a","b"]
     //strings:["aa","aa"]
     //strings:["flower","flower","flower", "flower"]
-    @SuppressLint("LogNotTimber")
     fun longestCommonPrefix(strings: Array<String>): String {
+        Timber.d("LongestCommonPrefix", LongestCommonPrefix::class.toString())
         val prefixBuilder = StringBuilder()
         var canAdd = true
         lateinit var result: String
