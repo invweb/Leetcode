@@ -15,6 +15,7 @@ class LongestCommonPrefix {
     //strings:["a","a","b"]
     //strings:["aa","aa"]
     //strings:["flower","flower","flower", "flower"]
+    //strings:["dog","racecar","car"]
     fun longestCommonPrefix(strings: Array<String>): String {
         Timber.d("LongestCommonPrefix", LongestCommonPrefix::class.toString())
         val prefixBuilder = StringBuilder()
@@ -48,7 +49,7 @@ class LongestCommonPrefix {
                         }
                     }
                 }
-                result = firstWord
+                result = prefixBuilder.toString()
             }
         }
         return result
