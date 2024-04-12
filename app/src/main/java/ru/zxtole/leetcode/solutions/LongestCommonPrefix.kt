@@ -20,37 +20,29 @@ class LongestCommonPrefix {
         Timber.d("LongestCommonPrefix", LongestCommonPrefix::class.toString())
         val prefixBuilder = StringBuilder()
         var canAdd = true
-        lateinit var result: String
-
+        var result = ""
+        var smallestWordLength: Int = 0
+        var l = 0
         if (strings.isNotEmpty()) {
-            for (i in 0..<strings.size - 1) {
-                var firstWord: String = strings[i]
+            for (firstElement in strings) {
+//                for (secondElement in strings) {
+                for (i in 1 until strings.size) {
+                    val secondElement = strings[i]
 
-                for (ll in 1..<strings.size) {
-                    if(prefixBuilder.isNotEmpty()) {
-                        firstWord = prefixBuilder.toString()
-                        prefixBuilder.clear()
-                    }
-                    val secondWord: String = strings[ll]
-                    val smallestWordLength: Int = if (firstWord.length > secondWord.length) {
-                        secondWord.length
-                    } else {
-                        firstWord.length
-                    }
-
-
-                    for (l in 0..< smallestWordLength) {
-                        if (canAdd) {
-                            if (firstWord[l] == secondWord[l]) {
-                                prefixBuilder.append(firstWord[l])
-                            } else {
-                                canAdd = false
+                    if (l < firstElement.length && l < secondElement.length) {
+                        if (firstElement[l] == secondElement[l]) {
+                            if (canAdd) {
+                                prefixBuilder.append(firstElement[l])
                             }
+                        } else {
+                            canAdd = false
                         }
                     }
+                    l++
+                    result = prefixBuilder.toString()
                 }
-                result = prefixBuilder.toString()
             }
+
         }
         return result
     }

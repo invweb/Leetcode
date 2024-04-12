@@ -71,7 +71,8 @@ class MainActivity : ComponentActivity() {
                             RomainIntegerComposable(
                                 romainRepresentation,
                                 intRepresentation.toString(),
-                                Modifier.padding(12.dp))
+                                Modifier.padding(12.dp)
+                            )
                         }
 
                         Row {
@@ -85,8 +86,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun RomainIntegerComposable(romainIntegerAsString: String, romainIntegerAsInt: String,
-                            modifier: Modifier = Modifier) {
+fun RomainIntegerComposable(
+    romainIntegerAsString: String, romainIntegerAsInt: String,
+    modifier: Modifier = Modifier
+) {
     Text(
         text = "$romainIntegerAsString ->> $romainIntegerAsInt",
         modifier = modifier
@@ -97,12 +100,13 @@ fun RomainIntegerComposable(romainIntegerAsString: String, romainIntegerAsInt: S
 fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
     val longestCommonPrefix = LongestCommonPrefix()
 //    val wordsToProcess = arrayOf("cir","car")
-    val wordsToProcess = arrayOf("dog","racecar","car")
-//    val wordsToProcess = arrayOf("flower","flow","flight")
+//    val wordsToProcess = arrayOf("dog","racecar","car")
 //    val wordsToProcess = arrayOf("flower","flower","flower","flower")
 //    val wordsToProcess = arrayOf("aa","aa")
-//    val wordsToProcess = arrayOf("a","a","b") //-
-//    val wordsToProcess = arrayOf("c","acc","ccc") //-
+//    val wordsToProcess = arrayOf("c","acc","ccc")
+
+    val wordsToProcess = arrayOf("flower", "flow", "flight") //-
+//    val wordsToProcess = arrayOf("a", "a", "b") //-
     val commonPrefix = wordsToProcess.joinToString() + " common prefix: " +
             "\'" + longestCommonPrefix.longestCommonPrefix(wordsToProcess) + "\'"
 
