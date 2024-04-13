@@ -2,6 +2,7 @@ package ru.zxtole.leetcode.solutions
 
 import android.annotation.SuppressLint
 import timber.log.Timber
+import java.util.Arrays
 import kotlin.text.StringBuilder
 
 class LongestCommonPrefix {
@@ -21,28 +22,37 @@ class LongestCommonPrefix {
         val prefixBuilder = StringBuilder()
         var canAdd = true
         var result = ""
-        var smallestWordLength: Int = 0
+        val smallestWordLength: Int
         var l = 0
         if (strings.isNotEmpty()) {
-            for (firstElement in strings) {
-//                for (secondElement in strings) {
-                for (i in 1 until strings.size) {
-                    val secondElement = strings[i]
+            smallestWordLength = strings.asList().stream().min(
+                Comparator.comparingInt(String::length)
+            ).get().length - 1
 
-                    if (l < firstElement.length && l < secondElement.length) {
-                        if (firstElement[l] == secondElement[l]) {
-                            if (canAdd) {
-                                prefixBuilder.append(firstElement[l])
+            for (firstElement in strings) {
+                for (i in 1 until smallestWordLength) {
+                    val secondElement = strings[i]
+                    if (firstElement != secondElement) {
+                        if (l < smallestWordLength) {
+                            if (l == 0) {
+                                if (firstElement[l] == secondElement[l]) {
+                                    if (canAdd) {
+                                        prefixBuilder.append(firstElement[l])
+                                    }
+                                }
+                            } else {
+                                if (prefixBuilder.isNotEmpty()) {
+                                    prefixBuilder.deleteCharAt(l - 1)
+                                    canAdd = false
+                                }
                             }
-                        } else {
-                            canAdd = false
+//                            }
+                            l++
+                            result = prefixBuilder.toString()
                         }
                     }
-                    l++
-                    result = prefixBuilder.toString()
                 }
             }
-
         }
         return result
     }
