@@ -30,7 +30,7 @@ class LongestCommonPrefix {
             ).get().length - 1
 
             for (firstElement in strings) {
-                for (i in 1 until smallestWordLength) {
+                for (i in 1 until smallestWordLength + 1) {
                     val secondElement = strings[i]
                     if (firstElement != secondElement) {
                         if (l < smallestWordLength) {
@@ -48,9 +48,11 @@ class LongestCommonPrefix {
                             }
 //                            }
                             l++
-                            result = prefixBuilder.toString()
                         }
+                    } else {
+                        prefixBuilder.append(firstElement[l])
                     }
+                    result = prefixBuilder.toString()
                 }
             }
         }
