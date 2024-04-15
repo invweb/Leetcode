@@ -103,9 +103,9 @@ fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
 //    val wordsToProcess = arrayOf("a", "a", "b")
 //    val wordsToProcess = arrayOf("dog","racecar","car")
 //    val wordsToProcess = arrayOf("c","acc","ccc")
-    val wordsToProcess = arrayOf("aa","aa")//-
+//    val wordsToProcess = arrayOf("aa","aa")
 //    val wordsToProcess = arrayOf("flower", "flow", "flight")//-
-//    val wordsToProcess = arrayOf("flower","flower","flower","flower") //-
+    val wordsToProcess = arrayOf("flower","flower","flower","flower") //-
     val commonPrefix = wordsToProcess.joinToString() + " common prefix: " +
             "\'" + longestCommonPrefix.longestCommonPrefix(wordsToProcess) + "\'"
 
