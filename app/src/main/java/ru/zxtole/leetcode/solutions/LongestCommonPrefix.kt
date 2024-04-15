@@ -1,6 +1,5 @@
 package ru.zxtole.leetcode.solutions
 
-import timber.log.Timber
 import kotlin.text.StringBuilder
 
 class LongestCommonPrefix {
