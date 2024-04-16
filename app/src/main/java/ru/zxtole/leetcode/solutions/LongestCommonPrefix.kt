@@ -25,24 +25,20 @@ class LongestCommonPrefix {
                 Comparator.comparingInt(String::length)
             ).get().length - 1
 
-            for (firstElement in strings) {
-                if (prefixBuilder.isEmpty()) {
-                    for (i in 1 until smallestWordLength - 1) {
-                        val secondElement = strings[i]
-                        if (l < smallestWordLength) {
-                            if (firstElement[l] == secondElement[l]) {
-                                prefixBuilder.append(firstElement[l])
+            for (firstElementElementInDaStrings in strings) {
+                for (secondElementInDaStrings in strings) {
+                    for (i in 1 until smallestWordLength + 1) {
+                        if (l <= smallestWordLength) {
+                            if (firstElementElementInDaStrings[l] == secondElementInDaStrings[l] && canAdd) {
+                                prefixBuilder.append(firstElementElementInDaStrings[l])
+                            } else {
+                                canAdd = false
                             }
                             l++
                         }
                     }
-                } else {
-                    for (i in 1 until smallestWordLength - 1) {
-                        val secondElement = strings[i]
-
-                    }
+                    result = prefixBuilder.toString()
                 }
-                result = prefixBuilder.toString()
             }
         }
         return result
