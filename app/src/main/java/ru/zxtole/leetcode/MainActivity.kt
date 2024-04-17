@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import ru.zxtole.leetcode.solutions.LongestCommonPrefix
 import ru.zxtole.leetcode.solutions.RomainInteger
 import ru.zxtole.leetcode.ui.theme.LeetcodeTheme
+import timber.log.Timber
 
 private const val romainRepresentation: String = "MMCDXXV"// 1996
 //private const val romainRepresentation: String = "MCMXCVI"// 1996
@@ -47,6 +48,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Timber.plant()
         setContent {
             LeetcodeTheme {
                 // A surface container using the 'background' color from the theme
@@ -88,12 +90,12 @@ fun RomainIntegerComposable(
 fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
     val longestCommonPrefix = LongestCommonPrefix()
 //    val wordsToProcess = arrayOf("cir","car")
-//    val wordsToProcess = arrayOf("a", "a", "b")
-//    val wordsToProcess = arrayOf("dog","racecar","car")
+//    val wordsToProcess = arrayOf("a", "a", "b")  //--
+    val wordsToProcess = arrayOf("dog","racecar","car") //--
 //    val wordsToProcess = arrayOf("c","acc","ccc")
 //    val wordsToProcess = arrayOf("aa","aa")
-//    val wordsToProcess = arrayOf("flower", "flow", "flight")//-
-    val wordsToProcess = arrayOf("flower","flower","flower","flower") //-
+//    val wordsToProcess = arrayOf("flower", "flow", "flight")
+//    val wordsToProcess = arrayOf("flower","flower","flower","flower")
     val commonPrefix = wordsToProcess.joinToString() + " common prefix: " +
             "\'" + longestCommonPrefix.longestCommonPrefix(wordsToProcess) + "\'"
 
