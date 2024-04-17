@@ -16,28 +16,24 @@ class LongestCommonPrefix {
     //strings:["dog","racecar","car"]
     fun longestCommonPrefix(strings: Array<String>): String {
         val prefixBuilder = StringBuilder()
-        var canAdd = true
         var result = ""
         val smallestWordLength: Int
-        var l = 0
+
         if (strings.isNotEmpty()) {
             smallestWordLength = strings.asList().stream().min(
                 Comparator.comparingInt(String::length)
-            ).get().length - 1
+            ).get().length
 
-            for (firstElementElementInDaStrings in strings) {
-                for (secondElementInDaStrings in strings) {
-                    for (i in 1 until smallestWordLength + 1) {
-                        if (l <= smallestWordLength) {
-                            if (firstElementElementInDaStrings[l] == secondElementInDaStrings[l] && canAdd) {
-                                prefixBuilder.append(firstElementElementInDaStrings[l])
-                            } else {
-                                canAdd = false
+            for ((l, firstElementElementInDaStrings) in strings.withIndex()) {
+                for (secondElementInDaStrings in strings.asList().subList(1, strings.size)) {
+                    for (i in 0 until smallestWordLength) {
+                        if (firstElementElementInDaStrings[i] == secondElementInDaStrings[i]) {
+                            if (!prefixBuilder.contains(firstElementElementInDaStrings[i])) {// That is incorrect
+                                prefixBuilder.append(firstElementElementInDaStrings[i])
                             }
-                            l++
                         }
+                        result = prefixBuilder.toString()
                     }
-                    result = prefixBuilder.toString()
                 }
             }
         }
