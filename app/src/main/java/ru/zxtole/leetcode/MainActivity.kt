@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.zxtole.leetcode.solutions.LongestCommonPrefix
 import ru.zxtole.leetcode.solutions.RomainInteger
+import ru.zxtole.leetcode.solutions.ValidParentheses
 import ru.zxtole.leetcode.ui.theme.LeetcodeTheme
 import timber.log.Timber
 
@@ -65,7 +66,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                             Row {
-                                ValidParntheses(Modifier.padding(12.dp))
+                                ValidParnthesesComposable(Modifier.padding(12.dp))
                             }
                         }
                     }
@@ -130,6 +131,19 @@ fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ValidParntheses(modifier: Modifier = Modifier) {
-    val wordsToProcess = arrayOf("(]")
+fun ValidParnthesesComposable(modifier: Modifier = Modifier) {
+    val validParntheses = ValidParentheses()
+//    val parnthesesToProcess = java.lang.String("()")
+//    val parnthesesToProcess = java.lang.String("()[]{}")
+//    val parnthesesToProcess = java.lang.String("(]")
+//    val parnthesesToProcess = java.lang.String("([)]")
+    val parnthesesToProcess = java.lang.String("{[]}")
+
+    val result = validParntheses.processParntheses(parnthesesToProcess.toCharArray())
+    validParntheses.processParntheses(parnthesesToProcess.toCharArray())
+    Text(
+        text = "${parnthesesToProcess}: " +
+                "$result",
+        modifier = modifier
+    )
 }

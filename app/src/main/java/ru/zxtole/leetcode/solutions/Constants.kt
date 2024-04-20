@@ -50,4 +50,9 @@ object Constants {
     const val III_String: String = "III"
 
     const val L_String: String = "L"
+
+    val round_brackets: Pair<String, String> = Pair("(", ")")
+    val square_brackets: Pair<String, String> = Pair("[", "]")
+    val curly_brackets: Pair<String, String> = Pair("{", "}")
+    val angle_brackets: Pair<String, String> = Pair("<", ">")
 }
