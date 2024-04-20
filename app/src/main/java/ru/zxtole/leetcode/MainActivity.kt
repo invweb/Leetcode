@@ -8,9 +8,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -19,32 +23,8 @@ import ru.zxtole.leetcode.solutions.RomainInteger
 import ru.zxtole.leetcode.ui.theme.LeetcodeTheme
 import timber.log.Timber
 
-private const val romainRepresentation: String = "MMCDXXV"// 1996
-//private const val romainRepresentation: String = "MCMXCVI"// 1996
-//private const val romainRepresentation: String = "MMMCDXC"// 3490
-//private const val romainRepresentation: String = "MMMXLV"// 3045
-//private const val romainRepresentation: String = "MMCDXXV"// 2425
-//private const val romainRepresentation: String = "MCDLXXVI"// 1476
-//private const val romainRepresentation: String = "MMCCCXCIX"// 2399
-//private const val romainRepresentation: String = "MCDLXXVI"// 1476
-//private const val romainRepresentation: String = "MMCCCXCIX"// 2399
-//private const val romainRepresentation: String = "MCDLXXVI"// 1676
-//private const val romainRepresentation: String = "MCMXCIV"// 1994
-//private const val romainRepresentation: String = "LVIII"//58
-//private const val romainRepresentation: String = "MCMXCVI"//1996
-//private const val romainRepresentation: String = "DCXXI" //621
-//private const val romainRepresentation: String = "MDCCCLXXXIV" //1884
-//private const val romainRepresentation: String = "IX" //9
-
-
 class MainActivity : ComponentActivity() {
-    private val intRepresentation: Int = romanToInt()
-
-    private fun romanToInt(): Int {
-        val romainIntegerSolution = RomainInteger()
-        return romainIntegerSolution.romanToInt(romainRepresentation)
-    }
-
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,17 +36,37 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column {
-                        Row {
-                            RomainIntegerComposable(
-                                romainRepresentation,
-                                intRepresentation.toString(),
-                                Modifier.padding(12.dp)
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                colors = TopAppBarDefaults.topAppBarColors(
+                                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                    titleContentColor = MaterialTheme.colorScheme.primary,
+                                ),
+                                title = {
+                                    Text("Small Top App Bar")
+                                }
                             )
-                        }
+                        },
+                    ) { innerPadding ->
+                        Column(
+                            Modifier
+                                .padding(innerPadding)
+                                .fillMaxWidth()
+                        ) {
+                            Row {
+                                RomainIntegerComposable(
+                                    Modifier.padding(12.dp)
+                                )
+                            }
 
-                        Row {
-                            LongestCommonPrefixComposable(Modifier.padding(12.dp))
+                            Row {
+                                LongestCommonPrefixComposable(Modifier.padding(12.dp))
+                            }
+
+                            Row {
+                                ValidParntheses(Modifier.padding(12.dp))
+                            }
                         }
                     }
                 }
@@ -77,11 +77,30 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun RomainIntegerComposable(
-    romainIntegerAsString: String, romainIntegerAsInt: String,
     modifier: Modifier = Modifier
 ) {
+    val romainRepresentation: String = "MMCDXXV"// 1996
+//        val romainRepresentation: String = "MCMXCVI"// 1996
+//        val romainRepresentation: String = "MMMCDXC"// 3490
+//        val romainRepresentation: String = "MMMXLV"// 3045
+//        val romainRepresentation: String = "MMCDXXV"// 2425
+//        val romainRepresentation: String = "MCDLXXVI"// 1476
+//        val romainRepresentation: String = "MMCCCXCIX"// 2399
+//        val romainRepresentation: String = "MCDLXXVI"// 1476
+//        val romainRepresentation: String = "MMCCCXCIX"// 2399
+//        val romainRepresentation: String = "MCDLXXVI"// 1676
+//        val romainRepresentation: String = "MCMXCIV"// 1994
+//        val romainRepresentation: String = "LVIII"//58
+//        val romainRepresentation: String = "MCMXCVI"//1996
+//        val romainRepresentation: String = "DCXXI" //621
+//        val romainRepresentation: String = "MDCCCLXXXIV" //1884
+//        val romainRepresentation: String = "IX" //9
+    val romainIntegerSolution = RomainInteger()
+    val romainRepresentationResult =
+        romainIntegerSolution.romanToInt(romainRepresentation).toString()
+
     Text(
-        text = "$romainIntegerAsString ->> $romainIntegerAsInt",
+        text = "$romainRepresentation ->> $romainRepresentationResult",
         modifier = modifier
     )
 }
@@ -95,7 +114,7 @@ fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
 //    val wordsToProcess = arrayOf("c","acc","ccc")
 //    val wordsToProcess = arrayOf("flower", "flow", "flight") //--
 //    val wordsToProcess = arrayOf("aa","aa") //-
-    val wordsToProcess = arrayOf("flower","flower","flower","flower") //+
+    val wordsToProcess = arrayOf("flower", "flower", "flower", "flower") //-+
     val commonPrefix = wordsToProcess.joinToString() + " common prefix: " +
             "\'" + longestCommonPrefix.longestCommonPrefix(wordsToProcess) + "\'"
 
@@ -108,4 +127,9 @@ fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
             )
         }
     }
+}
+
+@Composable
+fun ValidParntheses(modifier: Modifier = Modifier) {
+    val wordsToProcess = arrayOf("(]")
 }
