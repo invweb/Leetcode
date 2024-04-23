@@ -2,6 +2,9 @@ package ru.zxtole.leetcode.solutions
 
 class ValidParentheses {
 
+    enum class ParnthesesState {
+        OPENED, CLOSED
+    }
 
     fun processParntheses(parnthesesToProcessString: CharArray): Boolean {
         var parnthesesCheck  = 0
@@ -12,35 +15,23 @@ class ValidParentheses {
         var parnthesesSquare  = 0
         var parnthesesCurly  = 0
 
-        var parnthesesRoundState: ParnthesesState
-        var parnthesesSquareState: ParnthesesState
-        var parnthesesCurlyState: ParnthesesState
+        var parnthesesRoundState: ParnthesesState = ParnthesesState.CLOSED
+        var parnthesesSquareState: ParnthesesState = ParnthesesState.CLOSED
+        var parnthesesCurlyState: ParnthesesState = ParnthesesState.CLOSED
 
         for (item in parnthesesToProcessString) {
             when (item.toString()) {
                 "(" -> {
-                    if(parnthesesCheck != 0 || parnthesesCheckSquare != 0
-                        || parnthesesCheckCurly != 0) {
-                        return false
-                    }
                     parnthesesCheck++
                     parnthesesRound++
                     parnthesesRoundState = ParnthesesState.OPENED
                 }
                 "[" -> {
-                    if(parnthesesCheck != 0 || parnthesesCheckSquare != 0
-                        || parnthesesCheckCurly != 0) {
-                        return false
-                    }
                     parnthesesCheckSquare++
                     parnthesesSquare++
                     parnthesesSquareState = ParnthesesState.OPENED
                 }
                 "{" -> {
-                    if(parnthesesCheck != 0 || parnthesesCheckSquare != 0
-                        || parnthesesCheckCurly != 0) {
-                        return false
-                    }
                     parnthesesCheckCurly++
                     parnthesesCurly++
                     parnthesesCurlyState = ParnthesesState.OPENED
@@ -48,27 +39,21 @@ class ValidParentheses {
                 ")" -> {
                     parnthesesCheck--
                     parnthesesRoundState = ParnthesesState.CLOSED
-                    if(parnthesesCheck != 0) {
-                        return false
-                    }
                 }
                 "]" -> {
                     parnthesesCheckSquare--
                     parnthesesSquareState = ParnthesesState.CLOSED
-                    if(parnthesesCheckSquare != 0) {
-                        return false
-                    }
                 }
                 "}" -> {
                     parnthesesCheckCurly--
                     parnthesesCurlyState = ParnthesesState.CLOSED
-                    if(parnthesesCheckCurly != 0) {
-                        return false
-                    }
                 }
             }
         }
 
-        return parnthesesCheck == 0
+        return parnthesesCurlyState == ParnthesesState.CLOSED &&
+                parnthesesRoundState == ParnthesesState.CLOSED &&
+                parnthesesSquareState == ParnthesesState.CLOSED &&
+                parnthesesCheck == 0
     }
 }
