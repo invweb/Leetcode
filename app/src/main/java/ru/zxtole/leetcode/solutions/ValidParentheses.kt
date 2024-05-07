@@ -63,9 +63,9 @@ class ValidParentheses {
         var parnthesesCheckCurly  = 0
 
         if (parnthesesToProcessString.isNotEmpty()) {
-            val strHalfLen = parnthesesToProcessString.length / 2
+            val strHalf = parnthesesToProcessString.length / 2
 
-            for (i in 0..strHalfLen) {
+            for (i in 0..strHalf) {
                 val char = parnthesesToProcessString[i]
                 when (char.toString()) {
                     "(" -> {
