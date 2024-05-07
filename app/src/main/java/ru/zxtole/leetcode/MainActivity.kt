@@ -133,17 +133,24 @@ fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
 @Composable
 fun ValidParnthesesComposable(modifier: Modifier = Modifier) {
     val validParntheses = ValidParentheses()
-//    val parnthesesToProcess = java.lang.String("()")
-//    val parnthesesToProcess = java.lang.String("()[]{}")
-//    val parnthesesToProcess = java.lang.String("(]")
-//    val parnthesesToProcess = java.lang.String("([)]")
-    val parnthesesToProcess = java.lang.String("{[]}")
+//    val parnthesesToProcess = String("()".toCharArray())
+//    val parnthesesToProcess = String("()[]{}".toCharArray())
+//    val parnthesesToProcess = String("(]".toCharArray())
+//    val parnthesesToProcess = String("{[]}".toCharArray())
+    val parnthesesToProcess = String("([)]".toCharArray())
 
-    val result = validParntheses.processParntheses(parnthesesToProcess.toCharArray())
-    validParntheses.processParntheses(parnthesesToProcess.toCharArray())
+    val result = validParntheses.isValid(parnthesesToProcess)
+    val strictResult = validParntheses.isValidStrict(parnthesesToProcess)
+    validParntheses.isValid(parnthesesToProcess)
     Text(
         text = "${parnthesesToProcess}: " +
                 "$result",
+        modifier = modifier
+    )
+
+    Text(
+        text = "${parnthesesToProcess}: " +
+                "strict $strictResult",
         modifier = modifier
     )
 }

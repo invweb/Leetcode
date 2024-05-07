@@ -6,7 +6,7 @@ class ValidParentheses {
         OPENED, CLOSED
     }
 
-    fun processParntheses(parnthesesToProcessString: CharArray): Boolean {
+    fun isValid(parnthesesToProcessString: String): Boolean {
         var parnthesesCheck  = 0
         var parnthesesCheckSquare  = 0
         var parnthesesCheckCurly  = 0
@@ -55,5 +55,53 @@ class ValidParentheses {
                 parnthesesRoundState == ParnthesesState.CLOSED &&
                 parnthesesSquareState == ParnthesesState.CLOSED &&
                 parnthesesCheck == 0
+    }
+
+    fun isValidStrict(parnthesesToProcessString: String): Boolean {
+        var parnthesesCheck  = 0
+        var parnthesesCheckSquare  = 0
+        var parnthesesCheckCurly  = 0
+
+        if (parnthesesToProcessString.isNotEmpty()) {
+            val strHalfLen = parnthesesToProcessString.length / 2
+
+            for (i in 0..strHalfLen) {
+                val char = parnthesesToProcessString[i]
+                when (char.toString()) {
+                    "(" -> {
+                        parnthesesCheck++
+                    }
+                    "[" -> {
+                        parnthesesCheckSquare++
+                    }
+                    "{" -> {
+                        parnthesesCheckCurly++
+                    }
+                    ")" -> {
+                        if (parnthesesCheck > 0) {
+                            parnthesesCheck--
+                        } else {
+                            return false
+                        }
+                    }
+                    "]" -> {
+                        if (parnthesesCheckSquare > 0) {
+                            parnthesesCheckSquare--
+                        } else {
+                            return false
+                        }
+                    }
+                    "}" -> {
+                        if (parnthesesCheckCurly > 0) {
+                            parnthesesCheckCurly--
+                        } else {
+                            return false
+                        }
+                    }
+                }
+            }
+        }
+
+        return parnthesesCheck == 0 && parnthesesCheckSquare == 0 && parnthesesCheckCurly == 0
     }
 }
