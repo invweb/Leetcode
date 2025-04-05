@@ -133,14 +133,18 @@ fun LongestCommonPrefixComposable(modifier: Modifier = Modifier) {
 @Composable
 fun ValidParnthesesComposable(modifier: Modifier = Modifier) {
     val validParntheses = ValidParentheses()
-//    val parnthesesToProcess = String("()".toCharArray())
-//    val parnthesesToProcess = String("()[]{}".toCharArray())
-//    val parnthesesToProcess = String("(]".toCharArray())
-//    val parnthesesToProcess = String("{[]}".toCharArray())
-    val parnthesesToProcess = String("([)]".toCharArray())
+    val parnthesesToProcess = String("()".toCharArray())
+    val parnthesesToProcess1 = String("()[]{}".toCharArray())
+    val parnthesesToProcess2 = String("(]".toCharArray())
+    val parnthesesToProcess3 = String("{[]}".toCharArray())
+    val parnthesesToProcess4 = String("([)]".toCharArray())
 
     val result = validParntheses.isValid(parnthesesToProcess)
     val strictResult = validParntheses.isValidStrict(parnthesesToProcess)
+    val strictResult1 = validParntheses.isValidStrict(parnthesesToProcess1)
+    val strictResult2 = validParntheses.isValidStrict(parnthesesToProcess2)
+    val strictResult3 = validParntheses.isValidStrict(parnthesesToProcess3)
+    val strictResult4 = validParntheses.isValidStrict(parnthesesToProcess4)
     validParntheses.isValid(parnthesesToProcess)
     Text(
         text = "${parnthesesToProcess}: " +
@@ -151,6 +155,26 @@ fun ValidParnthesesComposable(modifier: Modifier = Modifier) {
     Text(
         text = "${parnthesesToProcess}: " +
                 "strict $strictResult",
+        modifier = modifier
+    )
+    Text(
+        text = "${parnthesesToProcess1}: " +
+                "strict $strictResult1",
+        modifier = modifier
+    )
+    Text(
+        text = "${parnthesesToProcess2}: " +
+                "strict $strictResult2",
+        modifier = modifier
+    )
+    Text(
+        text = "${parnthesesToProcess3}: " +
+                "strict $strictResult3",
+        modifier = modifier
+    )
+    Text(
+        text = "${parnthesesToProcess4}: " +
+                "strict $strictResult4",
         modifier = modifier
     )
 }
